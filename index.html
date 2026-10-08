@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O'zbekistondagi 54 ta sport turi bo'yicha uyda o'tirib onlayn bron qilish va ro'yxatdan o'tish portali. Professional murabbiylar, mashg'ulot boshlanish va tugash vaqtlari hamda guruh sig'imlari.">
+  <meta name="keywords" content="sport, onlayn bron, futbol, boks, kurash, shaxmat, suzish, tennis, murabbiy, ro'yxatdan o'tish">
+  <title>ONLINE SPORT BANT — 54 ta Sport Turi Bo'yicha Onlayn Bron va Ro'yxatdan O'tish</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- ASOSIY HEADER VA NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand" id="brandLogo">
+        <img src="logo.jpg" alt="Sport Bant Logo" class="brand-logo-img">
+        <div>
+          <div class="brand-title">SPORT <span>BANT</span> ONLINE <span class="brand-badge">UZB</span></div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="btn-my-bookings" id="btnOpenBookings" aria-label="Mening bronlarim">
+          <span>📋 Mening Bronlarim</span>
+          <span class="bookings-counter" id="bookingsCountBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="heroSection">
+    <div class="container">
+      <h1 class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">SPORT BANT ONLINE — 54 ta Sport Turi Bo'yicha Onlayn Bron</h1>
+
+      <!-- STATISTIKA KO'RSATKICHLARI -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div>
+            <div class="stat-val" id="statSportsCount">54 ta</div>
+            <div class="stat-lbl">Rasmiy Sport Turlari</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🥋</div>
+          <div>
+            <div class="stat-val" id="statCoachesCount">110+ ta</div>
+            <div class="stat-lbl">Malakali Murabbiylar</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div>
+            <div class="stat-val">30+ kishi</div>
+            <div class="stat-lbl">Har bir guruh sig'imi</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎟️</div>
+          <div>
+            <div class="stat-val">100% Onlayn</div>
+            <div class="stat-lbl">Elektron Chipta & Bron</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QIDIRUV, SARALASH VA TOIFALAR BOSHQARUV PANELI -->
+  <section class="controls-panel" id="controlsPanel">
+    <div class="container controls-row">
+      <div class="search-sort-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Sport turi (masalan: Futbol, Boks, Shaxmat...) yoki murabbiy ismini qidiring..." 
+            autocomplete="off"
+          >
+          <button class="search-clear" id="searchClearBtn" title="Tozalash">✕</button>
+        </div>
+
+        <div class="sort-select-wrap">
+          <select id="sortSelect" class="sort-select" aria-label="Saralash">
+            <option value="id-asc">Raqam tartibida (1-54)</option>
+            <option value="name-asc">Nom bo'yicha (A - Z)</option>
+            <option value="price-asc">Narx (Arzondan boshlab)</option>
+            <option value="price-desc">Narx (Qimmatdan boshlab)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TOIFALAR (KATEGORIYALAR) TUGMALARI -->
+      <div class="category-tabs" id="categoryTabs">
+        <!-- JS orqali dinamik yaratiladi -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SPORT TURLARI RO'YXATI VA NATIJALAR -->
+  <main class="container" id="mainContent">
+    <div class="section-meta">
+      <div class="results-count" id="resultsCount">
+        Natija: <strong id="currentResultsNum">54 ta</strong> sport turi mavjud
+      </div>
+      <div class="filter-hint" style="font-size: 13px; color: var(--text-muted);">
+        💡 Har bir sport turida alohida oyna va murabbiylar profili mavjud
+      </div>
+    </div>
+
+    <!-- 54 TA SPORT KARTALARI GRIDI -->
+    <div class="sports-grid" id="sportsGrid">
+      <!-- JavaScript orqali to'liq 54 ta sport kartasi yuklanadi -->
+    </div>
+  </main>
+
+  <!-- HAR BIR SPORT UCHUN ALOHIDA OYNA (DEDICATED MODAL) -->
+  <div class="modal-backdrop" id="sportDetailModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container" id="modalContainer">
+      <!-- Modal Hero Cover Header -->
+      <div class="modal-hero-cover">
+        <img src="" alt="" class="modal-hero-img" id="modalSportImg">
+        <div class="modal-hero-gradient"></div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Oynani yopish">✕</button>
+
+        <div class="modal-hero-info">
+          <div class="modal-title-wrap">
+            <div class="modal-sport-tag">
+              <span id="modalSportIcon">⚽</span>
+              <span id="modalSportCategory">To'p o'yinlari</span>
+              <span>•</span>
+              <span id="modalSportBadge">Ommabop</span>
+            </div>
+            <h2 class="modal-title" id="modalSportTitle">Futbol</h2>
+          </div>
+          <div class="modal-price-pill" id="modalSportPrice">350 000 so'm / oy</div>
+        </div>
+      </div>
+
+      <!-- Modal Tab Navigatsiya -->
+      <div class="modal-nav-tabs">
+        <button class="modal-tab-btn active" data-tab="tab-overview" id="tabBtnOverview">
+          <span>ℹ️</span> Umumiy Ma'lumot
+        </button>
+        <button class="modal-tab-btn" data-tab="tab-coaches" id="tabBtnCoaches">
+          <span>🥋</span> Murabbiylar & Guruh Sig'imi (30+)
+        </button>
+        <button class="modal-tab-btn" data-tab="tab-booking" id="tabBtnBooking">
+          <span>✍️</span> Onlayn Bron & Ro'yxatdan O'tish
+        </button>
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="modal-scroll-body">
+        
+        <!-- 1-TAB: UMUMIY MA'LUMOT -->
+        <div class="tab-pane active" id="tab-overview">
+          <div class="sport-specs-row">
+            <div class="spec-chip">
+              <span class="spec-chip-icon">📍</span>
+              <div>
+                <div class="spec-chip-lbl">Mashg'ulot Manzili</div>
+                <div class="spec-chip-val" id="modalSpecLocation">Markaziy Arena</div>
+              </div>
+            </div>
+
+            <div class="spec-chip">
+              <span class="spec-chip-icon">🎂</span>
+              <div>
+                <div class="spec-chip-lbl">Qabul Qilinadigan Yosh</div>
+                <div class="spec-chip-val" id="modalSpecAge">7 - 35 yosh</div>
+              </div>
+            </div>
+
+            <div class="spec-chip">
+              <span class="spec-chip-icon">👥</span>
+              <div>
+                <div class="spec-chip-lbl">Guruhga Qabul Talabi</div>
+                <div class="spec-chip-val" style="color: var(--accent-emerald);">30 tadan kam emas</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-subtitle-badge">Batafsil Tavsif</div>
+          <p class="sport-full-desc" id="modalFullDesc"></p>
+
+          <div class="section-subtitle-badge">Kerakli Jihozlar va Talablar</div>
+          <div class="sport-full-desc" id="modalRequirements" style="margin-bottom: 24px;"></div>
+
+          <div style="text-align: right;">
+            <button class="btn-submit-booking" id="btnGoToBookingTab" style="max-width: 320px; margin-left: auto;">
+              Murabbiylarni Ko'rish va Bron Qilish ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- 2-TAB: MURABBIYLAR RO'YXATI (YOSHI, TAJRIBASI, SIG'IMI >= 30, VAQTLARI) -->
+        <div class="tab-pane" id="tab-coaches">
+          <div class="section-subtitle-badge">Professional Ustozlar</div>
+          <h3 class="section-h3">Sport Turi Murabbiylari va Mashg'ulot Vaqtlari</h3>
+          
+          <div class="coaches-cards-list" id="modalCoachesList">
+            <!-- JS orqali murabbiylar kartalari kiritiladi -->
+          </div>
+        </div>
+
+        <!-- 3-TAB: ONLAYN BRON QILISH VA RO'YXATDAN O'TISH FORMASI -->
+        <div class="tab-pane" id="tab-booking">
+          <div class="booking-form-box" id="bookingFormContainer">
+            <div class="form-header-badge">⚡ Uyda o'tirib onlayn navbat band qilish</div>
+            <h3 class="form-title" id="formSportHeading">Onlayn Ro'yxatdan O'tish va Bron Qilish</h3>
+            <p class="form-desc">
+              O'zingizga qulay vaqt va murabbiyni tanlang. Guruh sig'imi kamida 30 kishidan iborat bo'lib, bron qilingandan so'ng sizga maxsus elektron chipta beriladi.
+            </p>
+
+            <form id="onlineBookingForm" novalidate>
+              <div class="capacity-live-alert" id="capacityAlert">
+                <span class="capacity-alert-txt" id="capacityAlertText">Tanlangan murabbiy guruhida joy mavjud: 30 kishilik sig'im</span>
+                <div class="capacity-progress-bar">
+                  <div class="capacity-progress-fill" id="capacityFillBar" style="width: 65%;"></div>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label class="field-label" for="bookingFullName">Ism va Familiyangiz <span>*</span></label>
+                  <input type="text" id="bookingFullName" class="field-input" placeholder="Masalan: Sardor Rustamov" required>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="bookingPhone">Telefon Raqamingiz <span>*</span></label>
+                  <input type="tel" id="bookingPhone" class="field-input" placeholder="+998 90 123 45 67" required>
+                  <span class="field-help">SMS orqali tasdiqlash kodi uchun</span>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="bookingCoachSelect">Murabbiyni Tanlang <span>*</span></label>
+                  <select id="bookingCoachSelect" class="field-select" required>
+                    <!-- Dinamik murabbiylar option'lari -->
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="bookingTimeSlot">Mashg'ulot Vaqti (Boshlanish - Tugash) <span>*</span></label>
+                  <select id="bookingTimeSlot" class="field-select" required>
+                    <!-- Dinamik soat oralig'i option'lari -->
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="bookingBirthDate">Tug'ilgan Yilingiz / Yoshi <span>*</span></label>
+                  <input type="number" id="bookingBirthDate" class="field-input" placeholder="Masalan: 2002 yoki 24 yosh" min="1950" max="2025" required>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="bookingDateStart">Mashg'ulot Boshlash Sanasi <span>*</span></label>
+                  <input type="date" id="bookingDateStart" class="field-input" required>
+                </div>
+              </div>
+
+              <div class="form-field" style="margin-bottom: 24px;">
+                <label class="field-label" for="bookingNotes">Qo'shimcha Istaklar yoki Tibbiy Eslatmalar</label>
+                <textarea id="bookingNotes" class="field-textarea" rows="2" placeholder="Masalan: Boshlang'ich darajadaman, tizzamda yengil jarohat bor edi..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit-booking" id="btnSubmitBooking">
+                <span>🎟️</span> Joyni Bron Qilish va Elektron Chipta Olish
+              </button>
+            </form>
+          </div>
+
+          <!-- GENERATSIYA QILINGAN BRON CHIPTASI (MUAFFAQIYATLI BO'LGANDA CHIQADI) -->
+          <div class="ticket-wrapper" id="ticketGeneratedBox" style="display: none;">
+            <div class="ticket-header">
+              <div class="ticket-logo">
+                <span style="font-size: 28px;" id="ticketSportIcon">⚽</span>
+                <div>
+                  <h4 style="font-size: 20px; color: var(--text-main);" id="ticketSportName">Futbol</h4>
+                  <span style="font-size: 12px; color: var(--accent-cyan);">Rasmiy Onlayn Bron Chiptasi</span>
+                </div>
+              </div>
+              <div class="ticket-stamp">✓ BRON TASDIQLANDI</div>
+            </div>
+
+            <div class="ticket-grid">
+              <div class="ticket-item">
+                <span class="ticket-lbl">Bron Raqami:</span>
+                <span class="ticket-val highlight" id="ticketId">#SP-2026-0001</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Ishtirokchi:</span>
+                <span class="ticket-val" id="ticketUserName">Sardor Rustamov</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Telefon:</span>
+                <span class="ticket-val" id="ticketUserPhone">+998 90 123 45 67</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Biriktirilgan Murabbiy:</span>
+                <span class="ticket-val" id="ticketCoachName">Ravshan Haydarov</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Mashg'ulot Vaqti:</span>
+                <span class="ticket-val highlight" id="ticketTimeInterval">16:30 — 18:30</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Hafta Kunlari:</span>
+                <span class="ticket-val" id="ticketDays">Dushanba, Chorshanba, Juma</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Guruh Sig'imi:</span>
+                <span class="ticket-val" id="ticketCapacity">Kamida 30+ kishi</span>
+              </div>
+              <div class="ticket-item">
+                <span class="ticket-lbl">Manzil:</span>
+                <span class="ticket-val" id="ticketLocation">Milliy Stadion</span>
+              </div>
+            </div>
+
+            <div class="ticket-footer">
+              <div class="ticket-qr-simulation">
+                <div class="qr-box">
+                  <!-- SVG QR-kod simulyatsiyasi -->
+                  <svg width="58" height="58" viewBox="0 0 24 24" fill="black">
+                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 2h2v2h-2v-2zm-4-4h2v2h-2v-2zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm4-6h2v2h-2v-2zm0 4h2v4h-2v-4z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Elektron QR-Pass</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Sport majmuasiga kirish uchun ko'rsatiladi</div>
+                </div>
+              </div>
+
+              <div class="ticket-actions-row">
+                <button class="btn-ticket-print" id="btnPrintTicket">🖨️ Chiptani Chop Etish / Yuklab Olish</button>
+                <button class="btn-ticket-print" id="btnNewBookingAgain" style="color: var(--accent-cyan); border-color: var(--border-accent);">➕ Yangi Bron Qilish</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOYDALANUVCHINING BRONLARI RO'YXATI (DRAWER SLIDEOVER) -->
+  <div class="drawer-backdrop" id="bookingsDrawer" aria-hidden="true">
+    <div class="drawer-panel" id="drawerPanel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">
+          <span>📋</span> Mening Sport Bronlarim
+        </h3>
+        <button class="modal-close-btn" id="drawerCloseBtn" style="position: static;" aria-label="Yopish">✕</button>
+      </div>
+
+      <div class="drawer-body" id="drawerBookingsList">
+        <!-- JS orqali saqlangan bronlar yuklanadi -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST XABARLAR KONTEYNERI -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <img src="logo.jpg" alt="Sport Bant Logo" class="brand-logo-img">
+            <div class="brand-title">SPORT <span>BANT</span> ONLINE</div>
+          </div>
+          <p class="footer-brand-desc">
+            O'zbekistondagi 54 ta sport turi bo'yicha uyda o'tirib onlayn navbat olish, murabbiylar bilan tanishish va guruhlarga ro'yxatdan o'tish yagona milliy sport tizimi.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Ommabop Toifalar</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-cat-link" data-cat="To'p o'yinlari">To'p o'yinlari (Futbol, Basketbol)</a></li>
+            <li><a href="#" class="footer-cat-link" data-cat="Jang san'ati">Jang san'ati (Boks, Kurash, MMA)</a></li>
+            <li><a href="#" class="footer-cat-link" data-cat="Suv sporti">Suv sporti (Suzish, Kanoe)</a></li>
+            <li><a href="#" class="footer-cat-link" data-cat="Qishki sport">Qishki sport (Xokkey, Chang'i)</a></li>
+            <li><a href="#" class="footer-cat-link" data-cat="Intellektual">Intellektual (Shaxmat, Kibersport)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Aloqa va Qo'llab-quvvatlash</h4>
+          <ul class="footer-links">
+            <li>📞 +998 (71) 200-54-54</li>
+            <li>✉️ info@sportbantonlayn.uz</li>
+            <li>📍 Toshkent shahri, Amir Temur shox ko'chasi, Sport Saroyi</li>
+            <li>⏰ Ish vaqti: 24/7 Onlayn tizim</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 ONLINE SPORT BANT. Barcha huquqlar himoyalangan.</div>
+        <div style="color: var(--accent-cyan); font-size: 13px;">54 Ta Sport Turi • 110+ Murabbiy • 30+ Guruh Sig'imi</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SKRIPTLAR -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
